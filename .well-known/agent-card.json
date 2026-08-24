@@ -10,7 +10,8 @@
       "name": "x402 Agent Commerce Field Guide",
       "priceUSDC": 0.1,
       "meta": "https://turn-supporting-mumbai-shareware.trycloudflare.com/v1/premium/meta",
-      "pay": "https://turn-supporting-mumbai-shareware.trycloudflare.com/v1/pay"
+      "pay": "https://turn-supporting-mumbai-shareware.trycloudflare.com/v1/pay",
+      "catalog": "https://turn-supporting-mumbai-shareware.trycloudflare.com/v1/catalog"
     }
   ],
   "code": [
