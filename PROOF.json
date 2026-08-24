@@ -1,10 +1,17 @@
 {
   "suiteHealth": null,
-  "generatedAt": "2026-08-24T21:53:58.281Z",
+  "generatedAt": "2026-08-24T21:56:02.293Z",
   "demoUrl": "https://fares-roof-understand-family.trycloudflare.com",
   "gateway": {
     "service": "x402-gateway",
     "healthVerifiedRemotely": true
+  },
+  "uptime": {
+    "observedRuns": 1,
+    "healthyRuns": 1,
+    "firstObserved": "2026-08-24T21:32:51.424Z",
+    "lastObserved": "2026-08-24T21:32:51.424Z",
+    "source": "tamper-evident DUTY-CHAIN.jsonl (verify with node verify-proof.js)"
   },
   "dutyChain": {
     "entries": 1,
