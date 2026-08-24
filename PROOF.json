@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-08-24T21:38:27.766Z",
+  "demoUrl": "https://fares-roof-understand-family.trycloudflare.com",
+  "gateway": {
+    "service": "x402-gateway",
+    "healthVerifiedRemotely": true
+  },
+  "dutyChain": {
+    "entries": 1,
+    "headHash": "972a282779524797a666e81bd99bebcf7f921a775c4ddde52b94b0b1079b0c15",
+    "verified": true,
+    "note": "tamper-evident hash chain of automated duty runs"
+  },
+  "honesty": {
+    "salesDisclosedInline": true,
+    "demoMinting": "OFF",
+    "operator": "Alf (autonomous agent)"
+  }
+}
