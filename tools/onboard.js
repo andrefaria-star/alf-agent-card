@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 /* AGENT ON-RAMP - the single command an arriving agent runs before paying Alf.
- *   node onboard.js [cardPathOrUrl] [gatewayBase]
+ *   node onboard.js [cardPathOrUrl] [gatewayBase] [--json]
  * Steps: verify card -> probe /v1/catalog -> print exact payment instructions.
- * Exit 0 = safe to proceed. 1 = do NOT pay this agent. 2 = usage/unreachable. */
+ * Exit 0 = safe to proceed. 1 = do NOT pay this agent. 2 = usage/unreachable.
+ * --json: single machine-readable JSON object instead of human narrative. */
 const fs = require('fs');
 const { CHECKS } = require('./verify-agent-card.js');
 
@@ -25,7 +26,6 @@ async function probeCatalog(base) {
   else c.resources.forEach(x => {
     if (!x.id) problems.push('resource without id');
     const priced = typeof x.priceCents === 'number' && x.priceCents > 0;
-    // an explicitly free-preview item is legitimate; anything else must be priced
     if (!priced && !x.freePreview) problems.push('resource ' + x.id + ' unpriced');
   });
   if (c.identityCard && !String(c.identityCard).includes('.well-known/agent-card.json'))
@@ -45,32 +45,62 @@ function paymentInstructions(card, gwBase) {
 }
 if (require.main === module) {
   (async () => {
-    const src = process.argv[2] || '.well-known/agent-card.json';
-    const gw = process.argv[3];
+    const JSON_MODE = process.argv.includes('--json');
+    const pos = process.argv.slice(2).filter(a => a !== '--json');
+    const src = pos[0] || '.well-known/agent-card.json';
+    const gw = pos[1];
+    const checksOut = [];
+    const say = s => { if (!JSON_MODE) console.log(s); };
+    const emitJson = o => { if (JSON_MODE) console.log(JSON.stringify(o, null, 2)); };
+
     let card;
     try { card = await loadCard(src); }
-    catch (e) { console.error('unreadable card: ' + e.message); process.exit(2); }
-
-    console.log('== STEP 1: identity ==');
-    const fails = CHECKS.map(k => ({ n: k.name, f: k.fn(card) })).filter(x => x.f);
-    fails.forEach(f => console.log('FAIL ' + f.n + ' - ' + f.f));
-    console.log(`card checks: ${CHECKS.length - fails.length}/${CHECKS.length} passed`);
-    if (fails.length) { console.log('VERDICT: DO NOT PAY'); process.exit(1); }
-
-    if (gw) {
-      console.log('== STEP 2: live conformance (' + gw + ') ==');
-      try {
-        const p = await probeCatalog(gw);
-        console.log((p.ok ? 'PASS catalog: ' : 'FAIL catalog: ') + p.detail);
-        if (!p.ok) { console.log('VERDICT: DO NOT PAY'); process.exit(1); }
-      } catch (e) { console.log('FAIL unreachable: ' + e.message); process.exit(2); }
-    } else {
-      console.log('== STEP 2: skipped (no gateway base given) ==');
+    catch (e) {
+      emitJson({ tool: 'onboard', verdict: 'UNREADABLE_CARD', error: String(e.message) });
+      if (!JSON_MODE) console.error('unreadable card: ' + e.message);
+      process.exit(2);
     }
 
-    console.log('== STEP 3: payment instructions ==');
-    paymentInstructions(card, gw).forEach(l => console.log(l));
-    console.log('VERDICT: SAFE TO PROCEED');
+    say('== STEP 1: identity ==');
+    const fails = [];
+    CHECKS.forEach(k => {
+      const f = k.fn(card);
+      checksOut.push({ name: k.name, pass: !f });
+      if (f) fails.push({ n: k.name, f });
+    });
+    if (!JSON_MODE) {
+      fails.forEach(f => console.log('FAIL ' + f.n + ' - ' + f.f));
+      console.log(`card checks: ${CHECKS.length - fails.length}/${CHECKS.length} passed`);
+    }
+    const doNotPay = detail => {
+      emitJson({ tool: 'onboard', verdict: 'DO NOT PAY', checks: checksOut, detail: detail || null });
+      say('VERDICT: DO NOT PAY');
+      process.exit(1);
+    };
+    if (fails.length) return doNotPay(`identity card failed ${fails.length} check(s)`);
+
+    let conformance = null;
+    if (gw) {
+      say('== STEP 2: live conformance (' + gw + ') ==');
+      try {
+        const p = await probeCatalog(gw);
+        conformance = { ok: p.ok, detail: p.detail };
+        say((p.ok ? 'PASS catalog: ' : 'FAIL catalog: ') + p.detail);
+        if (!p.ok) return doNotPay(p.detail);
+      } catch (e) {
+        emitJson({ tool: 'onboard', verdict: 'GATEWAY_UNREACHABLE', checks: checksOut, error: String(e.message) });
+        say('FAIL unreachable: ' + e.message);
+        process.exit(2);
+      }
+    } else {
+      say('== STEP 2: skipped (no gateway base given) ==');
+    }
+
+    const instructions = paymentInstructions(card, gw);
+    say('== STEP 3: payment instructions ==');
+    instructions.forEach(l => say(l));
+    emitJson({ tool: 'onboard', verdict: 'SAFE TO PROCEED', checks: checksOut, conformance, instructions });
+    say('VERDICT: SAFE TO PROCEED');
     process.exit(0);
   })();
 }
