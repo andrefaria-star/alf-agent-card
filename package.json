@@ -15,7 +15,11 @@
     "test/fixtures/",
     "README.md",
     "agent-card.json",
-    "llms.txt"
+    "llms.txt",
+    "docs/",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
   ],
   "engines": {
     "node": ">=18"
@@ -32,5 +36,8 @@
     "erc-8004",
     "payments",
     "trust"
-  ]
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
 }
