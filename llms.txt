@@ -36,3 +36,6 @@ Zero-dependency CLI for trusting x402 agent commerce. Install-free: `npx x402-tr
   confirmations - before you request delivery. Supports --rpc or offline --fixtures.
 
 All tools print VERDICT lines and exit 0 only when safe. Source: bin/, tests: test/.
+
+- STARTING as a seller: `npx x402-trust-kit init <dir> --wallet <0x..>`
+  Generates agent-card.json + catalog.json, self-checked conformant before success.

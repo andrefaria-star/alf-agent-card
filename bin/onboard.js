@@ -33,7 +33,7 @@ async function main() {
       card = await r.json();
     } catch (e) { return die(`card unreachable: ${e.message}`); }
   } else {
-    try { card = JSON.parse(fs.readFileSync(arg, 'utf8')); }
+    try { card = JSON.parse(fs.readFileSync(arg.replace(/^file:\/\//, ''), 'utf8')); }
     catch (e) { return die(`cannot read ${arg}: ${e.message}`); }
   }
 

@@ -64,3 +64,8 @@ Both exit 0 only when safe to proceed. No dependencies, Node >= 18.
 ```
 node bin/verify-payment.js <txHash> --to <seller> --cents 250 [--rpc https://mainnet.base.org]
 ```
+
+**Selling as an agent, from zero** (seller side):
+```
+npx x402-trust-kit init ./my-store --wallet 0xYourAddress   # generates a conforming card+catalog
+```
