@@ -1,0 +1,299 @@
+TAP version 13
+# Subtest: every bin target exists
+ok 1 - every bin target exists
+  ---
+  duration_ms: 1.539042
+  type: 'test'
+  ...
+# Subtest: good catalog -> CONFORMANT exit 0
+ok 2 - good catalog -> CONFORMANT exit 0
+  ---
+  duration_ms: 83.753875
+  type: 'test'
+  ...
+# Subtest: cross-check: catalog + matching card -> CONFORMANT
+ok 3 - cross-check: catalog + matching card -> CONFORMANT
+  ---
+  duration_ms: 73.583834
+  type: 'test'
+  ...
+# Subtest: empty items[] -> NON-CONFORMANT exit 1
+ok 4 - empty items[] -> NON-CONFORMANT exit 1
+  ---
+  duration_ms: 77.440542
+  type: 'test'
+  ...
+# Subtest: missing price -> NON-CONFORMANT exit 1
+ok 5 - missing price -> NON-CONFORMANT exit 1
+  ---
+  duration_ms: 80.214084
+  type: 'test'
+  ...
+# Subtest: multiple violations reported together (scheme+seller+duplicate)
+ok 6 - multiple violations reported together (scheme+seller+duplicate)
+  ---
+  duration_ms: 76.545708
+  type: 'test'
+  ...
+# Subtest: unreachable catalog -> NON-CONFORMANT exit 1
+ok 7 - unreachable catalog -> NON-CONFORMANT exit 1
+  ---
+  duration_ms: 100.88875
+  type: 'test'
+  ...
+# Subtest: offline demo: all steps verified
+ok 8 - offline demo: all steps verified
+  ---
+  duration_ms: 414.988708
+  type: 'test'
+  ...
+# Subtest: happy: scaffold created, self-conformant, and buyer-onboardable
+ok 9 - happy: scaffold created, self-conformant, and buyer-onboardable
+  ---
+  duration_ms: 253.971042
+  type: 'test'
+  ...
+# Subtest: no-clobber: refuses when files exist
+ok 10 - no-clobber: refuses when files exist
+  ---
+  duration_ms: 231.749083
+  type: 'test'
+  ...
+# Subtest: malformed wallet rejected before writing anything
+ok 11 - malformed wallet rejected before writing anything
+  ---
+  duration_ms: 89.83675
+  type: 'test'
+  ...
+# Subtest: real settle -> ledger VALID with correct head
+ok 12 - real settle -> ledger VALID with correct head
+  ---
+  duration_ms: 227.72475
+  type: 'test'
+  ...
+# Subtest: edited amount -> TAMPERED
+ok 13 - edited amount -> TAMPERED
+  ---
+  duration_ms: 83.009041
+  type: 'test'
+  ...
+# Subtest: row deletion -> TAMPERED (broken linkage)
+ok 14 - row deletion -> TAMPERED (broken linkage)
+  ---
+  duration_ms: 160.711375
+  type: 'test'
+  ...
+# Subtest: missing file -> exit 2
+ok 15 - missing file -> exit 2
+  ---
+  duration_ms: 82.956375
+  type: 'test'
+  ...
+# Subtest: handshake + tools/list exposes >=5 tools
+ok 16 - handshake + tools/list exposes >=5 tools
+  ---
+  duration_ms: 74.159959
+  type: 'test'
+  ...
+# Subtest: tools/call verify_card green + red polarities
+not ok 17 - tools/call verify_card green + red polarities
+  ---
+  duration_ms: 155.361917
+  type: 'test'
+  location: '/Users/andregomesfaria/projects/alf-agent-card/test/mcp.test.js:42:1'
+  failureType: 'testCodeFailure'
+  error: '{"content":[{"type":"text","text":"FAIL type marker - missing eip-8004 type\\nFAIL numeric id - id must be positive integer\\nFAIL wallet chain/currency - wallet.chain/currency missing\\nFAIL services priced - services[] missing/empty/unpriced\\nFAIL trust surfaces declared - trustSurfaces.catalog/receipts missing\\nPASS 2/7 checks\\nVERDICT: do not trust this card"}],"isError":true}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/andregomesfaria/projects/alf-agent-card/test/mcp.test.js:47:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: run_demo returns verified walkthrough
+ok 18 - run_demo returns verified walkthrough
+  ---
+  duration_ms: 522.112958
+  type: 'test'
+  ...
+# Subtest: unknown method -> -32601
+ok 19 - unknown method -> -32601
+  ---
+  duration_ms: 70.512083
+  type: 'test'
+  ...
+# ok   green rc=0
+# ok   green parses
+# ok   green verdict
+# ok   green checks array
+# ok   green instructions
+# ok   red rc=1
+# ok   red verdict
+# ok   unreachable rc=2
+# ok   unreachable verdict
+# ok   badcard rc=2
+# ok   badcard verdict
+# ONBOARD-JSON SUITE GREEN
+# Subtest: test/onboard-json.test.js
+ok 7 - test/onboard-json.test.js
+  ---
+  duration_ms: 634.668375
+  type: 'test'
+  ...
+# Subtest: happy path: identity verified -> conformance -> SAFE TO PROCEED with instructions
+ok 21 - happy path: identity verified -> conformance -> SAFE TO PROCEED with instructions
+  ---
+  duration_ms: 84.515
+  type: 'test'
+  ...
+# Subtest: bad identity (empty description) -> CANNOT VERIFY, exit 1
+ok 22 - bad identity (empty description) -> CANNOT VERIFY, exit 1
+  ---
+  duration_ms: 77.173666
+  type: 'test'
+  ...
+# Subtest: dead catalog URL -> CANNOT VERIFY, exit 1
+ok 23 - dead catalog URL -> CANNOT VERIFY, exit 1
+  ---
+  duration_ms: 111.5705
+  type: 'test'
+  ...
+# Subtest: catalog seller != card wallet -> conformance failure, exit 1
+ok 24 - catalog seller != card wallet -> conformance failure, exit 1
+  ---
+  duration_ms: 84.077209
+  type: 'test'
+  ...
+# Subtest: honest payment -> 200 + secret; replay -> 409
+ok 25 - honest payment -> 200 + secret; replay -> 409
+  ---
+  duration_ms: 145.889541
+  type: 'test'
+  ...
+# Subtest: wrong recipient fixture -> 402, not settled
+ok 26 - wrong recipient fixture -> 402, not settled
+  ---
+  duration_ms: 83.219166
+  type: 'test'
+  ...
+# Subtest: underpaid impossible-by-construction guard: price raise rejects
+ok 27 - underpaid impossible-by-construction guard: price raise rejects
+  ---
+  duration_ms: 88.3745
+  type: 'test'
+  ...
+# Subtest: receipts jsonl persists settled tx across restart (dedupe survives reboot)
+ok 28 - receipts jsonl persists settled tx across restart (dedupe survives reboot)
+  ---
+  duration_ms: 169.101625
+  type: 'test'
+  ...
+# Subtest: malformed body -> 400
+ok 29 - malformed body -> 400
+  ---
+  duration_ms: 88.108083
+  type: 'test'
+  ...
+# Subtest: no args -> usage + exit 1
+ok 30 - no args -> usage + exit 1
+  ---
+  duration_ms: 87.865958
+  type: 'test'
+  ...
+# Subtest: --help -> usage + exit 0
+ok 31 - --help -> usage + exit 0
+  ---
+  duration_ms: 64.806916
+  type: 'test'
+  ...
+# Subtest: dispatch onboard happy -> SAFE TO PROCEED
+ok 32 - dispatch onboard happy -> SAFE TO PROCEED
+  ---
+  duration_ms: 133.768083
+  type: 'test'
+  ...
+# Subtest: unknown subcommand -> exit 1
+ok 33 - unknown subcommand -> exit 1
+  ---
+  duration_ms: 70.890125
+  type: 'test'
+  ...
+# Subtest: dispatch verify-payment honest -> PAYMENT VERIFIED
+ok 34 - dispatch verify-payment honest -> PAYMENT VERIFIED
+  ---
+  duration_ms: 139.901875
+  type: 'test'
+  ...
+# Subtest: shipped card passes every check
+ok 35 - shipped card passes every check
+  ---
+  duration_ms: 1.379042
+  type: 'test'
+  ...
+# Subtest: bad address shape fails
+ok 36 - bad address shape fails
+  ---
+  duration_ms: 0.158333
+  type: 'test'
+  ...
+# Subtest: unpriced service fails
+ok 37 - unpriced service fails
+  ---
+  duration_ms: 0.11925
+  type: 'test'
+  ...
+# Subtest: wrong type marker fails
+ok 38 - wrong type marker fails
+  ---
+  duration_ms: 0.070333
+  type: 'test'
+  ...
+# Subtest: honest payment -> VERIFIED exit 0
+ok 39 - honest payment -> VERIFIED exit 0
+  ---
+  duration_ms: 65.621667
+  type: 'test'
+  ...
+# Subtest: underpaid -> NOT VERIFIED
+ok 40 - underpaid -> NOT VERIFIED
+  ---
+  duration_ms: 67.571875
+  type: 'test'
+  ...
+# Subtest: wrong recipient -> NOT VERIFIED
+ok 41 - wrong recipient -> NOT VERIFIED
+  ---
+  duration_ms: 69.711583
+  type: 'test'
+  ...
+# Subtest: missing tx -> NOT VERIFIED
+ok 42 - missing tx -> NOT VERIFIED
+  ---
+  duration_ms: 70.506375
+  type: 'test'
+  ...
+# Subtest: reorg-risk: min-confirms unmet -> NOT VERIFIED
+ok 43 - reorg-risk: min-confirms unmet -> NOT VERIFIED
+  ---
+  duration_ms: 67.574666
+  type: 'test'
+  ...
+# Subtest: malformed args -> NOT VERIFIED with usage problems
+ok 44 - malformed args -> NOT VERIFIED with usage problems
+  ---
+  duration_ms: 69.494291
+  type: 'test'
+  ...
+1..44
+# tests 44
+# suites 0
+# pass 43
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2008.462667

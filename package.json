@@ -11,7 +11,8 @@
     "x402-trust-kit": "bin/trust-kit.js",
     "x402-init": "bin/init.js",
     "x402-settle": "bin/settle-server.js",
-    "x402-verify-ledger": "bin/verify-ledger.js"
+    "x402-verify-ledger": "bin/verify-ledger.js",
+    "x402-mcp": "bin/mcp-server.js"
   },
   "files": [
     "bin/",

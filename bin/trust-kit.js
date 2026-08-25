@@ -13,6 +13,7 @@ const TOOLS = {
   'demo': 'demo.js',
   'settle': 'settle-server.js',
   'verify-ledger': 'verify-ledger.js',
+  'mcp': 'mcp-server.js',
   'onboard': 'onboard.js',
   'conform': 'conform.js',
   'verify-payment': 'verify-payment.js',
@@ -26,6 +27,7 @@ if (!cmd || cmd === '--help' || cmd === '-h') {
   console.log('  init <dir> --wallet 0x..            scaffold a conforming store (seller quickstart)');
   console.log('  settle --pay-to .. --price-cents .. run a replay-proof settlement endpoint');
   console.log('  verify-ledger <receipts.jsonl>      prove a sales ledger was never rewritten');
+  console.log('  mcp                                  serve this toolkit over MCP (stdio) for other agents');
   console.log('  onboard <cardUrl|file>              verify seller identity+catalog BEFORE paying');
   console.log('  conform <catalog> [card]            prove your own catalog conforms BEFORE publishing');
   console.log('  verify-payment <tx> --to --cents    prove payment landed on-chain AFTER paying');

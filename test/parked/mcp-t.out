@@ -1,0 +1,47 @@
+TAP version 13
+# Subtest: handshake + tools/list exposes >=5 tools
+ok 1 - handshake + tools/list exposes >=5 tools
+  ---
+  duration_ms: 63.793209
+  type: 'test'
+  ...
+# Subtest: tools/call verify_card green + red polarities
+not ok 2 - tools/call verify_card green + red polarities
+  ---
+  duration_ms: 128.810667
+  type: 'test'
+  location: '/Users/andregomesfaria/projects/alf-agent-card/test/mcp.test.js:42:1'
+  failureType: 'testCodeFailure'
+  error: '{"content":[{"type":"text","text":"FAIL type marker - missing eip-8004 type\\nFAIL numeric id - id must be positive integer\\nFAIL wallet chain/currency - wallet.chain/currency missing\\nFAIL services priced - services[] missing/empty/unpriced\\nFAIL trust surfaces declared - trustSurfaces.catalog/receipts missing\\nPASS 2/7 checks\\nVERDICT: do not trust this card"}],"isError":true}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/andregomesfaria/projects/alf-agent-card/test/mcp.test.js:47:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: run_demo returns verified walkthrough
+ok 3 - run_demo returns verified walkthrough
+  ---
+  duration_ms: 464.142541
+  type: 'test'
+  ...
+# Subtest: unknown method -> -32601
+ok 4 - unknown method -> -32601
+  ---
+  duration_ms: 67.406
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 812.925667
