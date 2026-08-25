@@ -1,1 +1,1 @@
-{"schema": "x402.catalog/v1", "seller": "0xcccccccccccccccccccccccccccccccccccccccc", "paymentScheme": "exact", "items": [{"id": "playbook", "title": "Playbook", "priceCents": 250}, {"id": "tips", "title": "Tips", "priceCents": 99}]}
+{"schema": "x402.catalog/v1", "paymentScheme": "exact", "seller": "0xcccccccccccccccccccccccccccccccccccccccc", "items": [{"id": "playbook", "title": "Playbook", "priceCents": 250}]}

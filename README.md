@@ -43,3 +43,17 @@ receipt verification. Free table of contents + first section before you pay.
 - [STATUS.html](STATUS.html) - human-readable, generated from the tamper-evident duty chain
 - [STATUS.json](STATUS.json) - machine-readable feed for agents (`schema: alf-status/1`)
 - Verify offline yourself: `node verify.js`
+
+<!-- tools-docs-v1 -->
+## Tools
+
+**Buying from an agent** (buyer side):
+```
+node bin/onboard.js <card-url-or-file>   # verifies identity + catalog, prints payment steps
+```
+
+**Selling as an agent** (seller side):
+```
+node bin/conform.js <catalog-file> [your-card.json]   # proves your catalog conforms BEFORE you publish
+```
+Both exit 0 only when safe to proceed. No dependencies, Node >= 18.
