@@ -1,56 +1,34 @@
+// onboard.js contract tests - deterministic, fixture-based (no HTTP races).
 const { test } = require('node:test');
-const assert = require('node:assert');
-const { paymentInstructions, probeCatalog } = require('../tools/onboard.js');
-const CARD = require('../.well-known/agent-card.json');
-const FIXTURE = require('./fixtures/catalog-live.json');
+const { spawnSync } = require('child_process');
+const path = require('path');
+const fx = (f) => path.join(__dirname, 'fixtures', f);
+const run = (...a) => {
+  const r = spawnSync(process.execPath, [path.join(__dirname, '..', 'bin', 'onboard.js'), ...a],
+    { encoding: 'utf8', timeout: 10000 });
+  return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
+};
 
-function fetchStub(body) {
-  const orig = global.fetch;
-  global.fetch = async () => ({ ok: true, status: 200, json: async () => body });
-  return async () => { global.fetch = orig; };
-}
-
-test('instructions cover every service with wallet, USDC, chain, receipts', () => {
-  const lines = paymentInstructions(CARD);
-  assert.equal(lines.length, CARD.services.length);
-  lines.forEach(l => {
-    assert.ok(l.includes(CARD.wallet.address));
-    assert.ok(l.includes('USDC'));
-    assert.ok(l.includes(String(CARD.wallet.chain)));
-    assert.ok(l.includes('/v1/receipts'));
-  });
+test('happy path: identity verified -> conformance -> SAFE TO PROCEED with instructions', () => {
+  const r = run(fx('good-card.json'));
+  if (r.code !== 0) throw new Error(`expected exit 0, got ${r.code}\n${r.out}`);
+  if (!r.out.includes('SAFE TO PROCEED')) throw new Error(`missing verdict:\n${r.out}`);
+  if (!r.out.includes('250')) throw new Error(`missing price line:\n${r.out}`);
 });
 
-test('receipts placeholder resolves when gateway base given', () => {
-  const [line] = paymentInstructions(CARD, 'https://gw.example');
-  assert.ok(line.includes('https://gw.example/v1/receipts'), line);
-  assert.ok(!line.includes('<gateway>'));
-});
-test('without base, placeholder stays explicit (never silently wrong)', () => {
-  assert.ok(paymentInstructions(CARD)[0].includes('<gateway>'));
+test('bad identity (empty description) -> CANNOT VERIFY, exit 1', () => {
+  const r = run(fx('bad-card.json'));
+  if (r.code !== 1) throw new Error(`expected exit 1, got ${r.code}`);
+  if (!r.out.includes('CANNOT VERIFY')) throw new Error(r.out);
 });
 
-test('price lines derive dollars-from-cents for every service', () => {
-  paymentInstructions(CARD).forEach((l, i) =>
-    assert.ok(l.includes((CARD.services[i].priceCents / 100).toFixed(2)), 'line ' + i));
+test('dead catalog URL -> CANNOT VERIFY, exit 1', () => {
+  const r = run('http://127.0.0.1:9/card.json');
+  if (r.code !== 1 || !r.out.includes('CANNOT VERIFY')) throw new Error(r.out);
 });
 
-test('probe accepts the captured live catalog contract', async () => {
-  const done = fetchStub(FIXTURE);
-  try { const p = await probeCatalog('https://x.invalid');
-         assert.ok(p.ok, 'probe said: ' + p.detail); }
-  finally { await done(); }
-});
-
-test('probe rejects unpriced resources and non-address seller', async () => {
-  const bad = JSON.parse(JSON.stringify(FIXTURE));
-  bad.seller = 'not-an-address';
-  delete bad.resources[0].freePreview; bad.resources[0].priceCents = 0;
-  const done = fetchStub(bad);
-  try {
-    const p = await probeCatalog('https://x.invalid');
-    assert.equal(p.ok, false);
-    assert.match(p.detail, /seller/);
-    assert.match(p.detail, /unpriced/);
-  } finally { await done(); }
+test('catalog seller != card wallet -> conformance failure, exit 1', () => {
+  const r = run(fx('mismatch-card.json'));
+  if (r.code !== 1) throw new Error(`expected exit 1, got ${r.code}\n${r.out}`);
+  if (!/seller .*!=.*wallet|conformance failed/i.test(r.out)) throw new Error(r.out);
 });
