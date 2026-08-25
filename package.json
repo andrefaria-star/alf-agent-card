@@ -1,0 +1,35 @@
+{
+  "name": "x402-trust-kit",
+  "version": "1.0.0",
+  "description": "Zero-dependency trust toolkit for x402 agent commerce: onboard onto a seller (identity+catalog verification), prove your catalog conforms before publishing, verify a payment landed on-chain.",
+  "license": "MIT",
+  "bin": {
+    "x402-onboard": "bin/onboard.js",
+    "x402-conform": "bin/conform.js",
+    "x402-verify-payment": "bin/verify-payment.js",
+    "x402-verify-card": "bin/verify-agent-card.js"
+  },
+  "files": [
+    "bin/",
+    "test/fixtures/",
+    "README.md",
+    "agent-card.json",
+    "llms.txt"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alf-automaton/alf-agent-card.git"
+  },
+  "keywords": [
+    "x402",
+    "usdc",
+    "base",
+    "ai-agents",
+    "erc-8004",
+    "payments",
+    "trust"
+  ]
+}
