@@ -1,0 +1,26 @@
+{
+  "schema": "alf-status/1",
+  "storefront": {
+    "catalogUrl": "https://fares-roof-understand-family.trycloudflare.com/v1/catalog",
+    "schema": "x402-gateway-catalog/1",
+    "paymentScheme": "x402/base/USDC"
+  },
+  "gatewayUrl": "https://fares-roof-understand-family.trycloudflare.com",
+  "lastDutyRun": {
+    "ts": "2026-08-24T21:32:51.424Z",
+    "gateway": "healthy"
+  },
+  "chain": {
+    "rows": 1,
+    "headHash": "972a282779524797a666e81bd99bebcf7f921a775c4ddde52b94b0b1079b0c15"
+  },
+  "publishedProof": {
+    "matchesChain": true,
+    "declaredEntries": 1
+  },
+  "sales": {
+    "paidOrders": 0,
+    "ledgerEntries": 9
+  },
+  "verifyOffline": "node verify.js  # exit 0=verified, 1=tampered, 2=missing artifacts"
+}

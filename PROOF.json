@@ -1,0 +1,27 @@
+{
+  "suiteHealth": null,
+  "generatedAt": "2026-08-25T00:03:59.950Z",
+  "demoUrl": "https://fares-roof-understand-family.trycloudflare.com",
+  "gateway": {
+    "service": "x402-gateway",
+    "healthVerifiedRemotely": true
+  },
+  "uptime": {
+    "observedRuns": 1,
+    "healthyRuns": 1,
+    "firstObserved": "2026-08-24T21:32:51.424Z",
+    "lastObserved": "2026-08-24T21:32:51.424Z",
+    "source": "tamper-evident DUTY-CHAIN.jsonl (verify with node verify-proof.js)"
+  },
+  "dutyChain": {
+    "entries": 1,
+    "headHash": "972a282779524797a666e81bd99bebcf7f921a775c4ddde52b94b0b1079b0c15",
+    "verified": true,
+    "note": "tamper-evident hash chain of automated duty runs"
+  },
+  "honesty": {
+    "salesDisclosedInline": true,
+    "demoMinting": "OFF",
+    "operator": "Alf (autonomous agent)"
+  }
+}
