@@ -1,0 +1,276 @@
+TAP version 13
+# Subtest: every bin target exists
+not ok 1 - every bin target exists
+  ---
+  duration_ms: 2.616916
+  type: 'test'
+  location: '/Users/andregomesfaria/projects/alf-agent-card/test/bins.test.js:6:1'
+  failureType: 'testCodeFailure'
+  error: 'bin x402-verify-card -> bin/verify-agent-card.js MISSING'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/andregomesfaria/projects/alf-agent-card/test/bins.test.js:12:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: good catalog -> CONFORMANT exit 0
+ok 2 - good catalog -> CONFORMANT exit 0
+  ---
+  duration_ms: 89.823
+  type: 'test'
+  ...
+# Subtest: cross-check: catalog + matching card -> CONFORMANT
+ok 3 - cross-check: catalog + matching card -> CONFORMANT
+  ---
+  duration_ms: 80.679041
+  type: 'test'
+  ...
+# Subtest: empty items[] -> NON-CONFORMANT exit 1
+ok 4 - empty items[] -> NON-CONFORMANT exit 1
+  ---
+  duration_ms: 70.120958
+  type: 'test'
+  ...
+# Subtest: missing price -> NON-CONFORMANT exit 1
+ok 5 - missing price -> NON-CONFORMANT exit 1
+  ---
+  duration_ms: 79.490708
+  type: 'test'
+  ...
+# Subtest: multiple violations reported together (scheme+seller+duplicate)
+ok 6 - multiple violations reported together (scheme+seller+duplicate)
+  ---
+  duration_ms: 83.958125
+  type: 'test'
+  ...
+# Subtest: unreachable catalog -> NON-CONFORMANT exit 1
+ok 7 - unreachable catalog -> NON-CONFORMANT exit 1
+  ---
+  duration_ms: 120.877208
+  type: 'test'
+  ...
+# Subtest: offline demo: all steps verified
+ok 8 - offline demo: all steps verified
+  ---
+  duration_ms: 423.75075
+  type: 'test'
+  ...
+# Subtest: happy: scaffold created, self-conformant, and buyer-onboardable
+ok 9 - happy: scaffold created, self-conformant, and buyer-onboardable
+  ---
+  duration_ms: 267.281916
+  type: 'test'
+  ...
+# Subtest: no-clobber: refuses when files exist
+ok 10 - no-clobber: refuses when files exist
+  ---
+  duration_ms: 250.733916
+  type: 'test'
+  ...
+# Subtest: malformed wallet rejected before writing anything
+ok 11 - malformed wallet rejected before writing anything
+  ---
+  duration_ms: 80.627209
+  type: 'test'
+  ...
+# Subtest: real settle -> ledger VALID with correct head
+ok 12 - real settle -> ledger VALID with correct head
+  ---
+  duration_ms: 230.111333
+  type: 'test'
+  ...
+# Subtest: edited amount -> TAMPERED
+ok 13 - edited amount -> TAMPERED
+  ---
+  duration_ms: 83.74025
+  type: 'test'
+  ...
+# Subtest: row deletion -> TAMPERED (broken linkage)
+ok 14 - row deletion -> TAMPERED (broken linkage)
+  ---
+  duration_ms: 176.232291
+  type: 'test'
+  ...
+# Subtest: missing file -> exit 2
+ok 15 - missing file -> exit 2
+  ---
+  duration_ms: 89.329625
+  type: 'test'
+  ...
+# ok   green rc=0
+# ok   green parses
+# ok   green verdict
+# ok   green checks array
+# ok   green instructions
+# ok   red rc=1
+# ok   red verdict
+# ok   unreachable rc=2
+# ok   unreachable verdict
+# ok   badcard rc=2
+# ok   badcard verdict
+# ONBOARD-JSON SUITE GREEN
+# Subtest: test/onboard-json.test.js
+ok 6 - test/onboard-json.test.js
+  ---
+  duration_ms: 666.693416
+  type: 'test'
+  ...
+# Subtest: happy path: identity verified -> conformance -> SAFE TO PROCEED with instructions
+ok 17 - happy path: identity verified -> conformance -> SAFE TO PROCEED with instructions
+  ---
+  duration_ms: 89.331875
+  type: 'test'
+  ...
+# Subtest: bad identity (empty description) -> CANNOT VERIFY, exit 1
+ok 18 - bad identity (empty description) -> CANNOT VERIFY, exit 1
+  ---
+  duration_ms: 76.379167
+  type: 'test'
+  ...
+# Subtest: dead catalog URL -> CANNOT VERIFY, exit 1
+ok 19 - dead catalog URL -> CANNOT VERIFY, exit 1
+  ---
+  duration_ms: 102.813792
+  type: 'test'
+  ...
+# Subtest: catalog seller != card wallet -> conformance failure, exit 1
+ok 20 - catalog seller != card wallet -> conformance failure, exit 1
+  ---
+  duration_ms: 91.752584
+  type: 'test'
+  ...
+# Subtest: honest payment -> 200 + secret; replay -> 409
+ok 21 - honest payment -> 200 + secret; replay -> 409
+  ---
+  duration_ms: 147.549417
+  type: 'test'
+  ...
+# Subtest: wrong recipient fixture -> 402, not settled
+ok 22 - wrong recipient fixture -> 402, not settled
+  ---
+  duration_ms: 104.809958
+  type: 'test'
+  ...
+# Subtest: underpaid impossible-by-construction guard: price raise rejects
+ok 23 - underpaid impossible-by-construction guard: price raise rejects
+  ---
+  duration_ms: 106.975833
+  type: 'test'
+  ...
+# Subtest: receipts jsonl persists settled tx across restart (dedupe survives reboot)
+ok 24 - receipts jsonl persists settled tx across restart (dedupe survives reboot)
+  ---
+  duration_ms: 187.596708
+  type: 'test'
+  ...
+# Subtest: malformed body -> 400
+ok 25 - malformed body -> 400
+  ---
+  duration_ms: 83.1205
+  type: 'test'
+  ...
+# Subtest: no args -> usage + exit 1
+ok 26 - no args -> usage + exit 1
+  ---
+  duration_ms: 83.6255
+  type: 'test'
+  ...
+# Subtest: --help -> usage + exit 0
+ok 27 - --help -> usage + exit 0
+  ---
+  duration_ms: 70.979375
+  type: 'test'
+  ...
+# Subtest: dispatch onboard happy -> SAFE TO PROCEED
+ok 28 - dispatch onboard happy -> SAFE TO PROCEED
+  ---
+  duration_ms: 135.392417
+  type: 'test'
+  ...
+# Subtest: unknown subcommand -> exit 1
+ok 29 - unknown subcommand -> exit 1
+  ---
+  duration_ms: 77.711417
+  type: 'test'
+  ...
+# Subtest: dispatch verify-payment honest -> PAYMENT VERIFIED
+ok 30 - dispatch verify-payment honest -> PAYMENT VERIFIED
+  ---
+  duration_ms: 132.231792
+  type: 'test'
+  ...
+# Subtest: shipped card passes every check
+ok 31 - shipped card passes every check
+  ---
+  duration_ms: 1.38025
+  type: 'test'
+  ...
+# Subtest: bad address shape fails
+ok 32 - bad address shape fails
+  ---
+  duration_ms: 0.157375
+  type: 'test'
+  ...
+# Subtest: unpriced service fails
+ok 33 - unpriced service fails
+  ---
+  duration_ms: 0.118875
+  type: 'test'
+  ...
+# Subtest: wrong type marker fails
+ok 34 - wrong type marker fails
+  ---
+  duration_ms: 0.069833
+  type: 'test'
+  ...
+# Subtest: honest payment -> VERIFIED exit 0
+ok 35 - honest payment -> VERIFIED exit 0
+  ---
+  duration_ms: 62.405042
+  type: 'test'
+  ...
+# Subtest: underpaid -> NOT VERIFIED
+ok 36 - underpaid -> NOT VERIFIED
+  ---
+  duration_ms: 65.528375
+  type: 'test'
+  ...
+# Subtest: wrong recipient -> NOT VERIFIED
+ok 37 - wrong recipient -> NOT VERIFIED
+  ---
+  duration_ms: 80.482416
+  type: 'test'
+  ...
+# Subtest: missing tx -> NOT VERIFIED
+ok 38 - missing tx -> NOT VERIFIED
+  ---
+  duration_ms: 64.374083
+  type: 'test'
+  ...
+# Subtest: reorg-risk: min-confirms unmet -> NOT VERIFIED
+ok 39 - reorg-risk: min-confirms unmet -> NOT VERIFIED
+  ---
+  duration_ms: 65.8655
+  type: 'test'
+  ...
+# Subtest: malformed args -> NOT VERIFIED with usage problems
+ok 40 - malformed args -> NOT VERIFIED with usage problems
+  ---
+  duration_ms: 66.525375
+  type: 'test'
+  ...
+1..40
+# tests 40
+# suites 0
+# pass 39
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1660.99925

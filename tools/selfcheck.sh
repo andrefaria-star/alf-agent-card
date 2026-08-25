@@ -11,7 +11,7 @@ req() { [ -s "$1" ] && say PASS "exists: $1" || { say FAIL "missing: $1"; FAIL=1
 
 req .well-known/agent-card.json
 req llms.txt
-req tools/verify-agent-card.js
+req bin/verify-agent-card.js
 
 node -e 'JSON.parse(require("fs").readFileSync(".well-known/agent-card.json","utf8"))' \
   && say PASS "agent-card.json parses" || { say FAIL "agent-card.json invalid JSON"; FAIL=1; }
@@ -24,7 +24,7 @@ const miss = need.filter(m => !t.includes(m));
 if (miss.length) { console.error("llms.txt missing: " + miss.join(",")); process.exit(1); }' \
   && say PASS "llms.txt 9/9 trust markers" || { say FAIL "llms.txt markers"; FAIL=1; }
 
-node tools/verify-agent-card.js .well-known/agent-card.json >/dev/null 2>&1 \
+node bin/verify-agent-card.js .well-known/agent-card.json >/dev/null 2>&1 \
   && say PASS "card verifier 7/7" || { say FAIL "card verifier red"; FAIL=1; }
 
 [ "$FAIL" -eq 0 ] && echo "SELFCHECK PROVEN" || echo "SELFCHECK RED"

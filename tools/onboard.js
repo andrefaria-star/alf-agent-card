@@ -6,7 +6,7 @@
  * Exit 0 = safe to proceed. 1 = do NOT pay this agent. 2 = usage/unreachable.
  * --json: single machine-readable JSON object instead of human narrative. */
 const fs = require('fs');
-const { CHECKS } = require('./verify-agent-card.js');
+const { CHECKS } = require(require('path').join(__dirname, '..', 'bin', 'verify-agent-card.js'));
 
 function loadCard(src) {
   if (/^https?:\/\//.test(src))

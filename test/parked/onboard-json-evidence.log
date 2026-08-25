@@ -1,0 +1,36 @@
+TAP version 13
+# FAIL green rc=0
+#      ctx: {"rc":1,"err":"node:internal/modules/cjs/loader:1433\\n  throw err;\\n  ^\\n\\nError: Cannot find module './verify-agent-card.js'\\nRequire stack:\\n- /Users/andregomesfaria/pro"}
+# FAIL green parses
+# FAIL green verdict
+# FAIL green checks array
+# FAIL green instructions
+# ok   red rc=1
+# FAIL red verdict
+# FAIL unreachable rc=2
+#      ctx: {"rc":1}
+# FAIL unreachable verdict
+# FAIL badcard rc=2
+# FAIL badcard verdict
+# ONBOARD-JSON SUITE RED (10)
+# Subtest: test/onboard-json.test.js
+not ok 1 - test/onboard-json.test.js
+  ---
+  duration_ms: 389.395708
+  type: 'test'
+  location: '/Users/andregomesfaria/projects/alf-agent-card/test/onboard-json.test.js:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 395.459

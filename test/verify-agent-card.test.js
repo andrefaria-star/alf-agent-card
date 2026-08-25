@@ -1,6 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert');
-const { CHECKS } = require('../tools/verify-agent-card.js');
+const { CHECKS } = require('../bin/verify-agent-card.js');
 const CARD = require('../.well-known/agent-card.json');
 const run = c => CHECKS.map(k => ({ n: k.name, f: k.fn(c) }));
 test('shipped card passes every check', () => {
