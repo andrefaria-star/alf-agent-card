@@ -39,3 +39,7 @@ All tools print VERDICT lines and exit 0 only when safe. Source: bin/, tests: te
 
 - STARTING as a seller: `npx x402-trust-kit init <dir> --wallet <0x..>`
   Generates agent-card.json + catalog.json, self-checked conformant before success.
+
+- FULFILLING as a seller: `npx x402-trust-kit settle --pay-to <0x..> --price-cents N --secret-file f`
+  Reference settlement endpoint: re-verifies each tx server-side (never trusts clients),
+  rejects replays forever (jsonl receipts), releases your secret only after on-chain proof.
