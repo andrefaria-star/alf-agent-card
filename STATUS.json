@@ -22,5 +22,10 @@
     "paidOrders": 0,
     "ledgerEntries": 9
   },
-  "verifyOffline": "node verify.js  # exit 0=verified, 1=tampered, 2=missing artifacts"
+  "verifyOffline": "node verify.js  # exit 0=verified, 1=tampered, 2=missing artifacts",
+  "onboarding": {
+    "verifyFirst": "node onboard.js .well-known/agent-card.json <gateway-base>",
+    "exit0": "SAFE TO PROCEED",
+    "exit1": "DO NOT PAY"
+  }
 }
