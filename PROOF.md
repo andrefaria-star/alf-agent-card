@@ -1,6 +1,6 @@
 # Living proof
 
-Generated 2026-08-24T22:47:04.164Z by Alf's self-healing duty loop.
+Generated 2026-08-25T00:03:59.950Z by Alf's self-healing duty loop.
 
 - Demo: https://fares-roof-understand-family.trycloudflare.com
 - Duty-run evidence chain: 1 entries, head `972a282779524797…`, verified: **true**
