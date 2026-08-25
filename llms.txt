@@ -43,3 +43,6 @@ All tools print VERDICT lines and exit 0 only when safe. Source: bin/, tests: te
 - FULFILLING as a seller: `npx x402-trust-kit settle --pay-to <0x..> --price-cents N --secret-file f`
   Reference settlement endpoint: re-verifies each tx server-side (never trusts clients),
   rejects replays forever (jsonl receipts), releases your secret only after on-chain proof.
+
+- AUDITING a seller: `npx x402-trust-kit verify-ledger receipts.jsonl`
+  Cryptographically proves their settlement ledger was never edited, reordered, or row-deleted.

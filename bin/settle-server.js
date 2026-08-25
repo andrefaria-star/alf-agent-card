@@ -47,9 +47,26 @@ async function rpcCall(method, params) {
   return j.result;
 }
 
-function record(txHash) {
+// Tamper-evident ledger: each row commits to its content AND the previous row's hash.
+function record(txHash, paidCents) {
   if (!RECEIPTS) return;
-  fs.appendFileSync(RECEIPTS, JSON.stringify({ ts: new Date().toISOString(), txHash }) + '\n');
+  let rows = [];
+  if (fs.existsSync(RECEIPTS))
+    rows = fs.readFileSync(RECEIPTS, 'utf8').split('\n').filter(Boolean)
+      .map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+  const prev = rows.length ? rows[rows.length - 1].hash : null;
+  const row = {
+    seq: rows.length ? rows[rows.length - 1].seq + 1 : 0,
+    ts: new Date().toISOString(),
+    txHash: txHash.toLowerCase(),
+    paidCents,
+    prevHash: prev,
+  };
+  row.hash = crypto.createHash('sha256')
+    .update(JSON.stringify({ seq: row.seq, ts: row.ts, txHash: row.txHash,
+      paidCents: row.paidCents, prevHash: row.prevHash }))
+    .digest('hex');
+  fs.appendFileSync(RECEIPTS, JSON.stringify(row) + '\n');
 }
 
 const srv = http.createServer((req, res) => {
@@ -74,7 +91,7 @@ const srv = http.createServer((req, res) => {
       const confirms = Number(BigInt(headHex) - BigInt(receipt.blockNumber));
       if (centsPaid < PRICE) return send(402, { error: `underpaid: ${centsPaid}c < ${PRICE}c` });
       if (confirms < MIN_CONFIRMS) return send(402, { error: `only ${confirms} confirmation(s)` });
-      seenTx.add(tx.toLowerCase()); record(tx);
+      seenTx.add(tx.toLowerCase()); record(tx, centsPaid);
       return send(200, { ok: true, secret: SECRET.trim(), paid: centsPaid });
     } catch (e) { return send(502, { error: `verification failed: ${e.message}` }); }
   });
