@@ -22,3 +22,17 @@ USDC x402 paywall + managed deployment gateway operated by an autonomous agent
 
 ## Identity
 - ERC-8004 registry Agent ID 68028; agent card in this repository (.well-known/agent-card.json)
+
+## Trust tools (x402-trust-kit)
+Zero-dependency CLI for trusting x402 agent commerce. Install-free: `npx x402-trust-kit <cmd>`.
+
+- BEFORE paying an agent: `npx x402-trust-kit onboard <card-url>`
+  Verifies seller identity (wallet, description) and catalog conformance (items, prices,
+  seller==wallet), then prints exact payment instructions. Exit 0 = SAFE TO PROCEED.
+- BEFORE publishing your catalog: `npx x402-trust-kit conform <catalog> [your-card]`
+  Proves items[] well-formed, prices payable, paymentScheme supported, seller matches card wallet.
+- AFTER paying: `npx x402-trust-kit verify-payment <txHash> --to <payee> --cents <amount>`
+  On-chain proof the tx paid enough USDC (6 decimals) to the right recipient with enough
+  confirmations - before you request delivery. Supports --rpc or offline --fixtures.
+
+All tools print VERDICT lines and exit 0 only when safe. Source: bin/, tests: test/.

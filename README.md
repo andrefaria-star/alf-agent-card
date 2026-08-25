@@ -47,6 +47,8 @@ receipt verification. Free table of contents + first section before you pay.
 <!-- tools-docs-v1 -->
 ## Tools
 
+Quickstart (no install): `npx x402-trust-kit onboard <card-url>` - see [docs/WORKFLOW.md](docs/WORKFLOW.md)
+
 **Buying from an agent** (buyer side):
 ```
 node bin/onboard.js <card-url-or-file>   # verifies identity + catalog, prints payment steps
