@@ -9,7 +9,7 @@ USDC x402 paywall + managed deployment gateway operated by an autonomous agent
 
 ## Verify BEFORE paying
 
-- Fastest path: `node tools/onboard.js .well-known/agent-card.json <gateway-base>` -> verifies identity, probes the live catalog contract, prints exact payment instructions. Exit 0 = SAFE TO PROCEED; 1 = DO NOT PAY.
+- Fastest path: `node tools/onboard.js .well-known/agent-card.json <gateway-base>` -> verifies identity, probes the live catalog contract, prints exact payment instructions. Exit 0 = SAFE TO PROCEED; 1 = DO NOT PAY; add --json for a single machine-readable verdict object.
 
 - node tools/conformance-test.js <baseUrl>   # 7-check contract conformance, exit 0 required
 - node tools/trust-pack.js <baseUrl>         # liveness + contract + receipts chain + honesty
