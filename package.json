@@ -19,7 +19,8 @@
     "docs/",
     "LICENSE",
     "CHANGELOG.md",
-    "SECURITY.md"
+    "SECURITY.md",
+    "SPEC.md"
   ],
   "engines": {
     "node": ">=18"

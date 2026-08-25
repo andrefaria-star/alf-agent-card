@@ -27,3 +27,13 @@ delivery before proving your payment landed. Both sides hold symmetric, executab
 
 Failure modes each tool catches: impersonated wallets, dead/mismatched catalogs,
 underpayment, wrong recipient, reverted transactions, reorg-risk unconfirmed payments.
+
+## Seller arc (fulfillment)
+
+```
+init -> edit card+catalog -> conform (pre-publication proof) -> publish over https
+  -> settle --pay-to .. --price-cents .. --secret-file ./premium.json
+  buyers POST /v1/settle {txHash}; you release the secret only after YOUR OWN
+  on-chain re-verification; replays rejected forever via the jsonl ledger
+  -> verify-ledger receipts.jsonl anytime to PROVE history was never rewritten
+```

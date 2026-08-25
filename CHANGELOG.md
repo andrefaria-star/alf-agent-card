@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- `settle` - replay-proof reference settlement server (server-side re-verification,
+  hash-chained jsonl receipts)
+- `verify-ledger` - tamper-evidence audit for settlement ledgers
+- `SPEC.md` - normative v1 contract (cards, catalogs, settlement, ledgers, exit codes)
+
 ## 1.0.0 - 2026-08-25
 
 First complete release of the two-sided x402 trust toolkit.
