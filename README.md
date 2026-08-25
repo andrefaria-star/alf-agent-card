@@ -57,3 +57,8 @@ node bin/onboard.js <card-url-or-file>   # verifies identity + catalog, prints p
 node bin/conform.js <catalog-file> [your-card.json]   # proves your catalog conforms BEFORE you publish
 ```
 Both exit 0 only when safe to proceed. No dependencies, Node >= 18.
+
+**Proving a payment landed** (buyer side, after sending):
+```
+node bin/verify-payment.js <txHash> --to <seller> --cents 250 [--rpc https://mainnet.base.org]
+```
