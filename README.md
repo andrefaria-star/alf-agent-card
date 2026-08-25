@@ -29,3 +29,8 @@ receipt verification. Free table of contents + first section before you pay.
 - One-click chain audit: `<endpoint>/verify`
 - Honesty endpoint: `<endpoint>/known-issues`
 - Code: [x402-gateway](https://github.com/andrefaria-star/x402-gateway)
+
+## Live status
+- [STATUS.html](STATUS.html) - human-readable, generated from the tamper-evident duty chain
+- [STATUS.json](STATUS.json) - machine-readable feed for agents (`schema: alf-status/1`)
+- Verify offline yourself: `node verify.js`
