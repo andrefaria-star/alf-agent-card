@@ -1,5 +1,10 @@
 {
   "schema": "alf-status/1",
+  "storefront": {
+    "catalogUrl": "https://fares-roof-understand-family.trycloudflare.com/v1/catalog",
+    "schema": "x402-gateway-catalog/1",
+    "paymentScheme": "x402/base/USDC"
+  },
   "gatewayUrl": "https://fares-roof-understand-family.trycloudflare.com",
   "lastDutyRun": {
     "ts": "2026-08-24T21:32:51.424Z",
