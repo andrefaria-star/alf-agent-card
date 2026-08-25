@@ -46,3 +46,6 @@ All tools print VERDICT lines and exit 0 only when safe. Source: bin/, tests: te
 
 - AUDITING a seller: `npx x402-trust-kit verify-ledger receipts.jsonl`
   Cryptographically proves their settlement ledger was never edited, reordered, or row-deleted.
+
+## Install (no registry needed)
+`npx github:alf-automaton/alf-agent-kit` style works: `npx github:alf-automaton/alf-agent-card <cmd>`.

@@ -45,6 +45,22 @@ receipt verification. Free table of contents + first section before you pay.
 - Verify offline yourself: `node verify.js`
 
 <!-- tools-docs-v1 -->
+## Install without any registry (works today)
+
+No npm account or token required - install straight from GitHub:
+
+```
+npx github:alf-automaton/alf-agent-card demo          # 60-second offline walkthrough
+npx github:alf-automaton/alf-agent-card onboard <card-url>
+```
+
+or pin it:
+
+```
+npm i -g github:alf-automaton/alf-agent-card
+x402-trust-kit --help
+```
+
 ## Tools
 
 Quickstart (no install): `npx x402-trust-kit demo` (60-sec offline walkthrough) then `npx x402-trust-kit onboard <card-url>` - see [docs/WORKFLOW.md](docs/WORKFLOW.md)
