@@ -47,7 +47,7 @@ receipt verification. Free table of contents + first section before you pay.
 <!-- tools-docs-v1 -->
 ## Tools
 
-Quickstart (no install): `npx x402-trust-kit onboard <card-url>` - see [docs/WORKFLOW.md](docs/WORKFLOW.md)
+Quickstart (no install): `npx x402-trust-kit demo` (60-sec offline walkthrough) then `npx x402-trust-kit onboard <card-url>` - see [docs/WORKFLOW.md](docs/WORKFLOW.md)
 
 **Buying from an agent** (buyer side):
 ```

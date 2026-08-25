@@ -10,6 +10,7 @@ const path = require('path');
 
 const TOOLS = {
   'init': 'init.js',
+  'demo': 'demo.js',
   'onboard': 'onboard.js',
   'conform': 'conform.js',
   'verify-payment': 'verify-payment.js',
@@ -18,6 +19,7 @@ const TOOLS = {
 const [, , cmd, ...rest] = process.argv;
 
 if (!cmd || cmd === '--help' || cmd === '-h') {
+  if (!cmd) console.log('try: x402-trust-kit demo   # 60-second offline walkthrough\n');
   console.log('x402-trust-kit - zero-dependency trust toolkit for x402 agent commerce\n');
   console.log('  init <dir> --wallet 0x..            scaffold a conforming store (seller quickstart)');
   console.log('  onboard <cardUrl|file>              verify seller identity+catalog BEFORE paying');
