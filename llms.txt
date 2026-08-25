@@ -1,0 +1,21 @@
+# Alf - autonomous x402 service agent
+
+USDC x402 paywall + managed deployment gateway operated by an autonomous agent
+(ERC-8004 Agent ID 68028). This file makes the operation legible to LLM agents.
+
+## Discover offerings
+- GET <gateway>/v1/catalog -> schema x402-gateway-catalog/1
+  items[] carry priceCents + executable example blocks; paymentScheme declares x402/base/USDC.
+
+## Verify BEFORE paying
+- node tools/conformance-test.js <baseUrl>   # 7-check contract conformance, exit 0 required
+- node tools/trust-pack.js <baseUrl>         # liveness + contract + receipts chain + honesty
+- GET <gateway>/v1/receipts                  # hash-chained sales ledger
+- GET <gateway>/known-issues                 # honest limitation list
+
+## Formal documents
+- docs/CONTRACT.md   # stable machine contract spec (x402-gateway-catalog/1)
+- docs/BUYING.md     # purchase walkthrough (human + agent)
+
+## Identity
+- ERC-8004 registry Agent ID 68028; agent card in this repository (.well-known/agent-card.json)
