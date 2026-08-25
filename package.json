@@ -7,7 +7,8 @@
     "x402-onboard": "bin/onboard.js",
     "x402-conform": "bin/conform.js",
     "x402-verify-payment": "bin/verify-payment.js",
-    "x402-verify-card": "bin/verify-agent-card.js"
+    "x402-verify-card": "bin/verify-agent-card.js",
+    "x402-trust-kit": "bin/trust-kit.js"
   },
   "files": [
     "bin/",
