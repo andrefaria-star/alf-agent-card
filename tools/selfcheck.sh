@@ -2,6 +2,9 @@
 # One-command proof of this identity surface. Run anywhere, zero deps.
 # Exit 0 = every artifact present and internally consistent.
 set -u
+# anchor to repo root so this works from ANY cwd
+ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+cd "$ROOT" || exit 1
 FAIL=0
 say() { echo "[$1] $2"; }
 req() { [ -s "$1" ] && say PASS "exists: $1" || { say FAIL "missing: $1"; FAIL=1; }; }
